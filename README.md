@@ -1,70 +1,361 @@
-# Getting Started with Create React App
+# Water My Plants API
+## https://ft-water-my-plants-3.herokuapp.com
+### What To Know About This API
+I've made a LOT of endpoints. Some will be useful, some are just for reference (and maybe you want them, I don't know, I'm not your mom). JSON examples listed underneath this list. Don't care about reference? These are the ones you want:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### [GET] /api/plants/:plant_id
+***RESTRICTED ENDPOINT***
 
-## Available Scripts
+See the plant data (including plant owner) at a :plant_id
 
-In the project directory, you can run:
+### [POST] /api/plants/user/:user_id
+***RESTRICTED ENDPOINT***
 
-### `npm start`
+Post a plant to a user's data using the user's user_id
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### [PUT] /api/plants/:user_id/:plant_id
+***RESTRICTED ENDPOINT***
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Edit a plant's information using the user id and the plant id
 
-### `npm test`
+### [DELETE] /api/plants/:user_id/:plant_id
+***RESTRICTED ENDPOINT***
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Remove a plant using the user id and the plant id
 
-### `npm run build`
+### [GET] /api/users/:user_id
+***RESTRICTED ENDPOINT***
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+See a specific user's information
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### [GET] /api/users/:user_id/plants
+***RESTRICTED ENDPOINT***
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See all plants created by a single user
 
-### `npm run eject`
+### [POST] /api/users/register
+Create a new user
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### [POST] /api/users/login
+Logs in a user, receives a token for authorization
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### [PUT] /api/users/:user_id
+***RESTRICTED ENDPOINT***
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Edit the user's information
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Plants
+##### [GET] /api/plants
+***RESTRICTED ENDPOINT***
 
-## Learn More
+See the full array of plants
+<details>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```JSON
+[
+    {
+        "plant_id": 1,
+        "nickname": "Fish",
+        "species": "gillyweed",
+        "h20_frequency": 3,
+        "image": null,
+        "plant_owner_id": 1,
+        "plant_owner": "connie"
+    },
+    {
+        "plant_id": 2,
+        "nickname": "Tailss",
+        "species": "dirigible plum",
+        "h20_frequency": 3,
+        "image": null,
+        "plant_owner_id": 2,
+        "plant_owner": "michael"
+    },
+    {
+        "plant_id": 3,
+        "nickname": "Tyke",
+        "species": "mandrake",
+        "h20_frequency": 3,
+        "image": null,
+        "plant_owner_id": 3,
+        "plant_owner": "dave"
+    },
+    {
+        "plant_id": 4,
+        "nickname": "Pussy Patty",
+        "species": "bubotuber",
+        "h20_frequency": 3,
+        "image": null,
+        "plant_owner_id": 4,
+        "plant_owner": "veronica"
+    },
+    {
+        "plant_id": 5,
+        "nickname": "Wiggles",
+        "species": "venomous tentacula",
+        "h20_frequency": 3,
+        "image": null,
+        "plant_owner_id": 5,
+        "plant_owner": "jonathan"
+    },
+    {
+        "plant_id": 6,
+        "nickname": "Turtle",
+        "species": "shrivelpig",
+        "h20_frequency": 3,
+        "image": null,
+        "plant_owner_id": 6,
+        "plant_owner": "daniel"
+    }
+]
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+</details>
 
-### Code Splitting
+##### [GET] /api/plants/:plant_id
+***RESTRICTED ENDPOINT***
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+See the plant data (including plant owner) at a :plant_id
+<details>
 
-### Analyzing the Bundle Size
+/api/plants/1
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```JSON
+{
+    "plant_id": 1,
+    "nickname": "Fish",
+    "species": "gillyweed",
+    "h20_frequency": 3,
+    "image": null,
+    "plant_owner_id": 1,
+    "plant_owner": "connie"
+}
+```
 
-### Making a Progressive Web App
+</details>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+##### [POST] /api/plants/user/:user_id
+***RESTRICTED ENDPOINT***
 
-### Advanced Configuration
+Post a plant to a user's data using the user's user_id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+> *** Required information ***
+> nickname
+> species
+> h20_frequency
 
-### Deployment
+> *** Optional information ***
+> image
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<details>
 
-### `npm run build` fails to minify
+/api/plants/user/2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```JSON
+{
+    "plant_id": 9,
+    "nickname": "Spike",
+    "species": "cactus",
+    "h20_frequency": 1200,
+    "image": null
+}
+```
+
+</details>
+
+##### [PUT] /api/plants/:user_id/:plant_id
+***RESTRICTED ENDPOINT***
+
+Edit a plant's information using the user id and the plant id
+
+> *** Required information ***
+> nickname
+> species
+> h20_frequency
+
+> *** Optional information ***
+> image
+
+<details>
+
+/api/plants/user/2/9
+
+```JSON
+{
+    "nickname": "Spikey",
+    "species": "cactus",
+    "h20_frequency": 1200
+}
+```
+
+</details>
+
+##### [DELETE] /api/plants/:user_id/:plant_id
+***RESTRICTED ENDPOINT***
+
+Remove a plant using the user id and the plant id
+<details>
+
+/api/plants/user/2/9
+
+```JSON
+{
+    "message": "Did your plant die? That's okay. I'm only judging you the slightest bit."
+}
+```
+
+</details>
+
+## Users
+##### [GET] /api/users
+***RESTRICTED ENDPOINT***
+
+See the full array of users
+<details>
+
+```JSON
+[
+    {
+        "user_id": 1,
+        "username": "connie",
+        "phone_number": "1118675309"
+    },
+    {
+        "user_id": 2,
+        "username": "michael",
+        "phone_number": "2228675309"
+    },
+    {
+        "user_id": 3,
+        "username": "dave",
+        "phone_number": "3338675309"
+    },
+    {
+        "user_id": 4,
+        "username": "veronica",
+        "phone_number": "4448675309"
+    },
+    {
+        "user_id": 5,
+        "username": "jonathan",
+        "phone_number": "5558675309"
+    },
+    {
+        "user_id": 6,
+        "username": "daniel",
+        "phone_number": "6668675309"
+    }
+]
+```
+
+</details>
+
+##### [GET] /api/users/:user_id
+***RESTRICTED ENDPOINT***
+
+See a specific user's information
+<details>
+
+```JSON
+{
+    "user_id": 3,
+    "username": "dave",
+    "phone_number": "3338675309"
+}
+```
+
+</details>
+
+##### [GET] /api/users/:user_id/plants
+***RESTRICTED ENDPOINT***
+
+See all plants created by a single user
+<details>
+
+```JSON
+[
+    {
+        "plant_id": 3,
+        "nickname": "Tyke",
+        "species": "mandrake",
+        "h20_frequency": 3,
+        "image": null
+    }
+]
+```
+
+</details>
+
+##### [POST] /api/users/register
+Create a new user
+
+> *** Required information ***
+> username
+> phone_number
+> password
+
+<details>
+
+```JSON
+{
+    "user_id": 7,
+    "username": "gabe",
+    "phone_number": "7778675309"
+}
+```
+
+</details>
+
+##### [POST] /api/users/login
+Logs in a user, receives a token for authorization
+
+> *** Required information ***
+> username
+> password
+
+<details>
+
+```JSON
+{
+    "message": "Login successful",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYmUiLCJpYXQiOjE2MjE2NjEwODMsImV4cCI6MTYyMTc0NzQ4M30.7VWM3Q1JWAgw-HWKpDCu2GZN4AzVlkA-FUZoEIO0oZg"
+}
+```
+
+</details>
+
+##### [PUT] /api/users/:user_id
+***RESTRICTED ENDPOINT***
+
+Edit the user's information
+
+> *** Required information ***
+> username
+> phone_number
+> password
+
+<details>
+
+```JSON
+{
+    "username": "gabe",
+    "password": "password",
+    "phone_number": 7778675308
+}
+```
+
+</details>
+
+##### [DELETE] /api/users/:user_id
+***RESTRICTED ENDPOINT***
+
+Delete a user
+<details>
+
+```JSON
+{
+    "message": "Sorry you hate plants."
+}
+```
+
+</details>
