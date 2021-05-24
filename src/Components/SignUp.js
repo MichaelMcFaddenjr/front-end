@@ -44,6 +44,9 @@ const SignUp = (props) => {
           onChange={onChange}
         />
         <button disabled={disabled} id='sign-up-button'>Sign Up</button>
+        <div className='form-errors'>{errors.username}</div>
+        <div className='form-errors'>{errors.email}</div>
+        <div className='form-errors'>{errors.phone}</div>
       </form>
     </div>
   );

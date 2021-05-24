@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 import axios from 'axios';
+import * as yup from 'yup';
+import schema from './Validation/signUpFormSchema';
 
 import NavBar from './Components/NavBar';
 import Login from './Components/Login';
@@ -50,8 +52,15 @@ function App() {
       .finally(setSignUpFormValues(initialSignUpFormValues))
   }
 
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setSignUpFormErrors({ ...signUpFormErrors, [name]: '' }))
+      .catch(err => setSignUpFormErrors({ ...signUpFormErrors, [name]: err.errors[0] }))
+  }
+
   const inputChange = (name, value) => {
-    // validate(name, value)
+    validate(name, value)
     setSignUpFormValues({
       ...signUpFormValues, [name]: value
     })
@@ -65,6 +74,10 @@ function App() {
     }
     postNewUser(newUser)
   }
+
+  useEffect(() => {
+    schema.isValid(signUpFormValues).then(valid => setDisabled(!valid))
+  }, [signUpFormValues])
 
   return (
     <div className="App">
