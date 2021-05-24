@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -10,10 +10,10 @@ import AddPlant from './Components/AddPlant';
 import EditPlant from './Components/EditPlant';
 import UserProfile from './Components/UserProfile';
 
-
 import './App.css';
 
 function App() {
+
   return (
     <div className="App">
       <NavBar />
@@ -27,7 +27,7 @@ function App() {
         </Route>
         <PrivateRoute path='/myplants' component={MyPlants} />
         <PrivateRoute path='/addplant' component={AddPlant} />
-        <PrivateRoute path='/editplant' component={EditPlant} />
+        <PrivateRoute path='/editplant/:plant_id' component={EditPlant} />
         <PrivateRoute path='/myprofile' component={UserProfile} />
       </Switch>
     </div>
