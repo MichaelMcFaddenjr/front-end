@@ -1,13 +1,102 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+
 
 //This component will give the user the ability to edit plants they have already created
 //When this form appears, the currently stored info should render and a post call needs to be made on submission
 //Make sure we are matching backend keys  
 
-const EditPlant = () => {
+const EditPlant = (props) => {
+  const { push } = useHistory();
+  const { user_id, plant_id } = useParams();
+
+  console.log(plant_id);
+
+  const [ plant, setPlant ] = useState({
+    nickname:"",
+    species:"",
+    h20_frequency: 0,
+    image: "",
+  });
+
+  useEffect(()=>{
+    axiosWithAuth()
+    .get(`/users/${user_id}/plants/${plant_id}`)
+    .then(res=>{
+      setPlant(res.data)
+      console.log(res);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }, []);
+
+  const handleChange = (e) =>{
+    setPlant({
+      ...plant,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    axiosWithAuth()
+      .put(`/plants/${user_id}/${plant_id}`, plant)
+      .then(res=>{
+        setPlant(res.data);
+        push(`plants/${plant_id}`);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+  }
+
+  const { nickname, species, h20_frequency, image } = plant
 
   return (
-    <h1>Edit Plant Form</h1>
+    <div>
+      <h1>Edit Your Plant</h1>
+      <div>
+        <form onSubmit={handleSubmit}>
+        <label>Nickname
+          <input 
+            value={nickname}
+            name="nickname"
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
+        <label>Species
+          <input
+            value={species}
+            name= "species"
+            type= "text"
+            onChange={handleChange}
+          />
+        </label>
+        <label>Water Frequency (# of days)
+          <input  
+            value={h20_frequency}
+            name="h20_frequency"
+            type="number"
+            onChange={handleChange}
+          />
+        </label>
+        <label>Image
+          <input
+            value={image}
+            name="image"
+            type="text"
+            onChange={handleChange}
+          />
+        </label>
+        <button onClick={handleSubmit}>Save Changes</button>
+        <Link to={'/myplants'}><button>Cancel</button></Link>
+        </form>
+      </div>
+    </div>
   );
 }
 
