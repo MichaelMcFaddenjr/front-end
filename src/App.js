@@ -10,7 +10,6 @@ import AddPlant from './Components/AddPlant';
 import EditPlant from './Components/EditPlant';
 import UserProfile from './Components/UserProfile';
 
-
 import './App.css';
 
 function App() {
