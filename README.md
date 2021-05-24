@@ -21,7 +21,7 @@ Edit a plant's information using the user id and the plant id
 ### [DELETE] /api/plants/:user_id/:plant_id
 ***RESTRICTED ENDPOINT***
 
-Remove a plant using the user id and the plant id
+Remove a plant using the user id and the plant id 
 
 ### [GET] /api/users/:user_id
 ***RESTRICTED ENDPOINT***
@@ -57,7 +57,7 @@ See the full array of plants
         "plant_id": 1,
         "nickname": "Fish",
         "species": "gillyweed",
-        "h20_frequency": 3,
+        "h2o_frequency": 3,
         "image": null,
         "plant_owner_id": 1,
         "plant_owner": "connie"
@@ -66,7 +66,7 @@ See the full array of plants
         "plant_id": 2,
         "nickname": "Tailss",
         "species": "dirigible plum",
-        "h20_frequency": 3,
+        "h2o_frequency": 3,
         "image": null,
         "plant_owner_id": 2,
         "plant_owner": "michael"
@@ -75,7 +75,7 @@ See the full array of plants
         "plant_id": 3,
         "nickname": "Tyke",
         "species": "mandrake",
-        "h20_frequency": 3,
+        "h2o_frequency": 3,
         "image": null,
         "plant_owner_id": 3,
         "plant_owner": "dave"
@@ -84,7 +84,7 @@ See the full array of plants
         "plant_id": 4,
         "nickname": "Pussy Patty",
         "species": "bubotuber",
-        "h20_frequency": 3,
+        "h2o_frequency": 3,
         "image": null,
         "plant_owner_id": 4,
         "plant_owner": "veronica"
@@ -93,7 +93,7 @@ See the full array of plants
         "plant_id": 5,
         "nickname": "Wiggles",
         "species": "venomous tentacula",
-        "h20_frequency": 3,
+        "h2o_frequency": 3,
         "image": null,
         "plant_owner_id": 5,
         "plant_owner": "jonathan"
@@ -102,7 +102,7 @@ See the full array of plants
         "plant_id": 6,
         "nickname": "Turtle",
         "species": "shrivelpig",
-        "h20_frequency": 3,
+        "h2o_frequency": 3,
         "image": null,
         "plant_owner_id": 6,
         "plant_owner": "daniel"
@@ -125,7 +125,7 @@ See the plant data (including plant owner) at a :plant_id
     "plant_id": 1,
     "nickname": "Fish",
     "species": "gillyweed",
-    "h20_frequency": 3,
+    "h2o_frequency": 3,
     "image": null,
     "plant_owner_id": 1,
     "plant_owner": "connie"
@@ -142,7 +142,7 @@ Post a plant to a user's data using the user's user_id
 > *** Required information ***
 > nickname
 > species
-> h20_frequency
+> h2o_frequency
 
 > *** Optional information ***
 > image
@@ -156,7 +156,7 @@ Post a plant to a user's data using the user's user_id
     "plant_id": 9,
     "nickname": "Spike",
     "species": "cactus",
-    "h20_frequency": 1200,
+    "h2o_frequency": 1200,
     "image": null
 }
 ```
@@ -171,7 +171,7 @@ Edit a plant's information using the user id and the plant id
 > *** Required information ***
 > nickname
 > species
-> h20_frequency
+> h2o_frequency
 
 > *** Optional information ***
 > image
@@ -184,7 +184,7 @@ Edit a plant's information using the user id and the plant id
 {
     "nickname": "Spikey",
     "species": "cactus",
-    "h20_frequency": 1200
+    "h2o_frequency": 1200
 }
 ```
 
@@ -278,7 +278,7 @@ See all plants created by a single user
         "plant_id": 3,
         "nickname": "Tyke",
         "species": "mandrake",
-        "h20_frequency": 3,
+        "h2o_frequency": 3,
         "image": null
     }
 ]
