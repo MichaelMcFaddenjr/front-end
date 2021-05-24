@@ -4,9 +4,12 @@ import React from 'react';
 //on the NavBar there should be links with ability to see 'MyPlants', 'My Profile' and 'Logout'
 
 const NavBar = () => {
-
+  const logout = () => {
+    localStorage.removeItem('token');
+    window.location.href="/";
+  }
   return (
-    <h1>Nav Bar</h1>
+    <button onClick={logout}>logout</button>
   );
 }
 
