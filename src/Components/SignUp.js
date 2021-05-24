@@ -8,64 +8,64 @@ import { useStore } from 'react-redux';
 //only need a username, phone number and password  
 //add validation  
 
-const initialSignUpFormValues = {
+const initialUserValues = {
   username: '',
   password: '',
   phone_number: '',
 };
 
 const initialSignUpFormErrors = {
-  username: '',
-  password: '',
-  phone_number: '',
+  username_error: '',
+  password_error: '',
+  phone_number_error: '',
 };
 
 const initialDisabled = false;
 
-const SignUp = (props) => {
+const SignUp = () => {
 
   // const { values, change, disabled, submit, errors } = props;
 
-  const [user, setUser] = useState({});
-  const [signUpFormValues, setSignUpFormValues] = useState(initialSignUpFormValues);
+  const [user, setUser] = useState(initialUserValues);
+  // const [signUpFormValues, setSignUpFormValues] = useState(initialSignUpFormValues);
   const [signUpFormErrors, setSignUpFormErrors] = useState(initialSignUpFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled)
 
   const postNewUser = newUser => {
     axios.post('https://ft-water-my-plants-3.herokuapp.com/api/users/register', newUser)
       .then(res => {
-        setUser(res.data)
-        console.log('Post response: ', res.data)
+        console.log('Post response: ', res.data);
+        setUser(res.data);
       })
       .catch(err => {
-        console.log('Error: ', err)
-        return "There was an error..."
+        console.log('Error: ', err);
+        // return "There was an error..."
       })
   }
 
-  const validate = (name, value) => {
-    yup.reach(schema, name)
-      .validate(value)
-      .then(() => setSignUpFormErrors({ ...signUpFormErrors, [name]: '' }))
-      .catch(err => setSignUpFormErrors({ ...signUpFormErrors, [name]: err.errors[0] }))
-  }
+  // const validate = (name, value) => {
+  //   yup.reach(schema, name)
+  //     .validate(value)
+  //     .then(() => setSignUpFormErrors({ ...signUpFormErrors, [name]: '' }))
+  //     .catch(err => setSignUpFormErrors({ ...signUpFormErrors, [name]: err.errors[0] }))
+  // }
 
-  const inputChange = (e) => {
-    // validate(name, value)
-    // debugger;
+  const handleChange = (e) => {
+    // validate(e.target.name, e.target.value);
     console.log('event target', e.target);
     setUser({
       ...user, [e.target.name]: e.target.value
     })
   }
 
-  const signUpFormSubmit = () => {
+  const handleSubmit = () => {
+    console.log('clicked submit');
     const newUser = {
       username: user.username.trim(),
       password: user.password.trim(),
-      phone: user.phone_number.trim(),
-    }
-    postNewUser(newUser)
+      phone_number: user.phone_number.trim(),
+    };
+    postNewUser(newUser);
   }
 
   // useEffect(() => {
@@ -83,38 +83,38 @@ const SignUp = (props) => {
   //   submit();
   // }
 
-  const { username, password, phone } = user;
-  const { usernameError, passwordError, phoneError } = signUpFormErrors;
+  const { username, password, phone_number } = user;
+  const { username_error, password_error, phone_number_error } = signUpFormErrors;
 
   return (
     <div>
       <h1>Plant Card</h1>
-      <form id='sign-up-form' onSubmit={signUpFormSubmit}>
+      <form id='sign-up-form' onSubmit={handleSubmit}>
         <input 
           type='text'
           name='username'
           placeholder='Enter username'
           value={username}
-          onChange={inputChange}
+          onChange={handleChange}
         />
         <input
           type='password'
           name='password'
           placeholder='Enter new password'
           value={password}
-          onChange={inputChange}
+          onChange={handleChange}
         />
         <input
           type='text'
           name='phone_number'
           placeholder='Enter phone number'
-          value={phone}
-          onChange={inputChange}
+          value={phone_number}
+          onChange={handleChange}
         />
-        <button onClick={signUpFormSubmit} disabled={disabled} id='sign-up-button'>Sign Up</button>
-        <div className='form-errors'>{usernameError}</div>
-        <div className='form-errors'>{passwordError}</div>
-        <div className='form-errors'>{phoneError}</div>
+        <button onClick={handleSubmit} disabled={disabled} id='sign-up-button'>Sign Up</button>
+        <div className='form-errors'>{username_error}</div>
+        <div className='form-errors'>{password_error}</div>
+        <div className='form-errors'>{phone_number_error}</div>
       </form>
     </div>
   );
