@@ -16,7 +16,7 @@ const Page = styled.section`
 const Cont = styled.div`
   margin: 1rem;
 `
-const Inputs = styled.input`
+const Inputs = styled.input` 
   margin-left: .5rem;
   padding: 0 1rem 0 .5rem;
   border-radius: 5px;
