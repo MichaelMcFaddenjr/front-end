@@ -28,7 +28,7 @@ const AddPlant = ({ setAdd, myPlants, setMyPlants, user_id }) => {
     axiosWithAuth()
     .post(`/plants/user/${user_id}`, addPlant)
     .then(res=>{
-      setMyPlants(res.data);
+      // setMyPlants(res.data);
       push(`/myplants`);
       setAdd(false)
     })
