@@ -10,23 +10,25 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const EditPlant = (props) => {
   const { push } = useHistory();
-  const { user_id, plant_id } = useParams();
+  const { plant_id } = useParams();
+  const user_id = localStorage.getItem('user_id')
 
-  console.log(plant_id);
 
   const [ plant, setPlant ] = useState({
     nickname:"",
     species:"",
-    h20_frequency: 0,
-    image: "",
+    h2o_frequency: 0,
+    image: null,
+    plant_id: plant_id,
+    plant_owner: "",
+    plant_owner_id: user_id,
   });
-
+  
   useEffect(()=>{
     axiosWithAuth()
-    .get(`/users/${user_id}/plants/${plant_id}`)
+    .get(`/plants/${plant_id}`)
     .then(res=>{
       setPlant(res.data)
-      console.log(res);
     })
     .catch(err=>{
       console.log(err);
@@ -53,7 +55,7 @@ const EditPlant = (props) => {
       })
   }
 
-  const { nickname, species, h20_frequency, image } = plant
+  const { nickname, species, h2o_frequency, image } = plant
 
   return (
     <div>
@@ -78,8 +80,8 @@ const EditPlant = (props) => {
         </label>
         <label>Water Frequency (# of days)
           <input  
-            value={h20_frequency}
-            name="h20_frequency"
+            value={h2o_frequency}
+            name="h2o_frequency"
             type="number"
             onChange={handleChange}
           />
