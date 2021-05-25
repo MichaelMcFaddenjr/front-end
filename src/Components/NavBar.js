@@ -1,4 +1,5 @@
 import React from 'react';
+import UserProfile from './UserProfile'
 
 //This is our navBar
 //on the NavBar there should be links with ability to see 'MyPlants', 'My Profile' and 'Logout'
@@ -9,7 +10,10 @@ const NavBar = () => {
     window.location.href="/";
   }
   return (
-    <button onClick={logout}>logout</button>
+    <div>
+      <button onClick={logout}>logout</button>
+      <UserProfile/>
+    </div>
   );
 }
 
