@@ -11,19 +11,10 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 const EditPlant = (props) => {
   const { push } = useHistory();
   const { plant_id } = useParams();
-  const user_id = localStorage.getItem('user_id')
+  // const user_id = localStorage.getItem('user_id')
 
+  const [ plant, setPlant ] = useState({});
 
-  const [ plant, setPlant ] = useState({
-    nickname:"",
-    species:"",
-    h2o_frequency: 0,
-    image: null,
-    plant_id: plant_id,
-    plant_owner: "",
-    plant_owner_id: user_id,
-  });
-  
   useEffect(()=>{
     axiosWithAuth()
     .get(`/plants/${plant_id}`)
@@ -45,10 +36,10 @@ const EditPlant = (props) => {
   const handleSubmit = (e) =>{
     e.preventDefault();
     axiosWithAuth()
-      .put(`/plants/${user_id}/${plant_id}`, plant)
+      .put(`/plants/${plant_id}`, plant)
       .then(res=>{
-        setPlant(res.data);
-        push(`plants/${plant_id}`);
+        // setPlant(res.data);
+        push(`/myplants`);
       })
       .catch(err=>{
         console.log(err);
