@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import '../Login.css';
 
 //this component is for login in  
 //Unit 3 student can handle this because we will use axiosWithAuth
@@ -40,27 +41,39 @@ const Login = (props) => {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={submitHandler}>
-        <label>Username
+  <div className="login">
+    <div className="login-container">
+      <span className="login-form-title">Log In:</span>
+      <form className="login-form" onSubmit={submitHandler}>
+        <label className="username-textbox">
           <input
+            className="input"
             type="text"
             name="username"
+            placeholder="Username"
             value={login.username}
             onChange={handleChange}
           />
         </label>
-        <label>Password
+        <label className="password-textbox">
           <input
+            className="input"
             type="password"
             name="password"
+            placeholder="Password"
             value={login.password}
             onChange={handleChange}
           />
         </label>
-        <button onSubmit={submitHandler}>Login</button>
+        <div className="btn-container">
+        <button className="login-form-btn" onSubmit={submitHandler}>Log In</button>
+          <div className="bottom">
+            <span className="txt1">Don’t have an account?</span>
+            <a href="/signup" className="txt3">Sign Up Here!</a>
+          </div>
+        </div>
       </form>
+    </div>
       {error ? <p>{error} </p> : null}
     </div>
   );
