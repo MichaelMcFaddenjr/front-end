@@ -2,21 +2,56 @@ import React from 'react';
 import styled from 'styled-components'
 import { useEffect, useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import {useHistory} from 'react-router-dom'
-//this component is where a user can view and edit their profile info 
-//Their username and phone number should be visible but they should have the ability to edit all including their password
 
-const Page = styled.section``
-const Inputs = styled.input`
-  width: 7%;
-  margin: 0 1rem 0 .5rem;
-  border-radius: 5px;
+const Page = styled.section`
+  background-image: url('http://www.adventurewildlife.in/wp-content/uploads/2019/06/571962-plants-1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 4rem 8rem;
+  margin: 2rem auto 0;
+  font-family: 'KoHo', sans-serif;
+  font-weight: 500;
+  font-size: 1.75rem;
 `
-const Form = styled.form``
-const Button = styled.button``
+const Cont = styled.div`
+  margin: 1rem;
+`
+const Inputs = styled.input`
+  margin-left: .5rem;
+  padding: 0 1rem 0 .5rem;
+  border-radius: 5px;
+  font-size: 1.75rem;
+`
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+const Button = styled.button`
+  font-family: 'KoHo', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  border: none;
+  background-color: rgba(6,68,32,0.3);
+  border-radius: 10px;
+  padding: .25rem .5rem;
+  width: 15rem;
+
+  &:hover{
+    text-decoration: underline;
+    font-weight: 600
+}
+`
+const InfoDiv = styled.div`
+  width: 80%;
+
+`
+const Info = styled.p``
 
 const UserProfile = () => {
 
+  const [edit, setEdit] = useState(false)
   const [user, setUser] = useState({})
 
   const user_id = localStorage.getItem('user_id')
@@ -26,6 +61,7 @@ const UserProfile = () => {
     .get(`/users/${user_id}`)
     .then(res=>{
       setUser(res.data)
+      setEdit(false)
     })
     .catch(err=>{
       console.log(err);
@@ -38,120 +74,62 @@ const UserProfile = () => {
       [e.target.name]: e.target.value
     })
   }
+  console.log(user)
 
   const handleSubmit = e => {
     e.preventDefault()
     const {username, password, phone_number} = user
     axiosWithAuth()
     .put(`/users/${user_id}`, {username, password, phone_number})
-    .then(res=>{
-      console.log(`confirmed`)
+    .then(() =>{
+      setEdit(false)
     })
     .catch(err=>{
       console.log(err);
     })
   }
 
-  const {phone_number, password} = user
+  const editChange = () => {
+    setEdit(true)
+  }
+
+  const {username, phone_number, password} = user
 
   return (
     <Page>
-      <Form onSubmit={handleSubmit}>
-        <label for="password">Change password</label>
-        <Inputs
-          value={password}
-          name="password"
-          type="password"
-          placeholder= "New password"
-          onChange={handleChange}
-        />
-        <label for="phone_number">Edit phone number</label>
-        <Inputs
-          value={phone_number}
-          name="phone_number"
-          type="text"
-          onChange={handleChange}
-        />
-        <Button>Edit my information</Button>
-      </Form>
+      {edit === true ? (
+          <Form onSubmit={handleSubmit}>
+            <Cont><label for="password">Change password</label>
+            <Inputs
+              value={password}
+              name="password"
+              type="password"
+              placeholder= "New password"
+              onChange={handleChange}
+            />
+            </Cont>
+            <Cont>
+            <label for="phone_number">Edit phone number</label>
+            <Inputs
+              value={phone_number}
+              name="phone_number"
+              type="text"
+              onChange={handleChange}
+            />
+            </Cont>
+            <Button>Edit my information</Button>
+          </Form>
+        )
+      : (
+        <InfoDiv>
+          <Info>Username: {username}</Info>
+          <Info>Phone number: {phone_number}</Info>
+          <Button onClick={() => {editChange()}}>Edit my phone and password</Button>
+        </InfoDiv>
+        )
+      }
+      
     </Page>
   )
-// const {userName, password, phone } = props
-
-//     const {push} = useHistory()
-//     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-//     const [edit, setEdit] = useState(false);
-//     const [values, setValues] = useState({
-//       userName: "",
-//       phone: "",
-//       password: "",
-//     });
-  
-//     const handleChanges = (e) => {
-//       setValues({ ...values, [e.target.name]: e.target.value });
-//     };
-  
-//     // useEffect(()=>{
-//     //   axiosWithAuth()
-//     //   .get(`/users/${user_id}`)
-//     //   .then(res=>{
-//     //     setValues(res.data)
-//     //   })
-//     //   .catch(err=>{
-//     //     console.log(err);
-//     //   })
-//     // }, []);
-//     const handleSubmit = (e) => {
-//       // e.preventDefault();
-//       // setShowSuccessMessage(true);
-//       // axiosWithAuth()
-//       // .put(`/users/${user_id}`, values)
-//       // .then(res=>{
-//       //   setValues(res.data);
-//       //   push(`/users/${user_id}`);
-//       // })
-//       // .catch(err=>{
-//       //   console.log(err);
-//       // })
-//     };
-    
-//     return (
-//     <>
-//       <form onSubmit={handleSubmit}>
-//         <h2>Update Profile Form:</h2>
-//         <label>
-//           Password:
-//           <input
-//             name='password'
-//             value={values.password}
-//             onChange={handleChanges}
-//             type={password}
-//             />
-//         </label>
-//         <label>
-//           Phone Number:
-//           <input
-//             name='phone'
-//             value={values.phone}
-//             onChange={handleChanges}
-//             />
-//         </label>
-//         <button onClick={handleSubmit}>Submit</button>
-//       </form>
-//       {showSuccessMessage && (
-//         <div className="success-message" data-testid="successMessage">
-//           <p>
-//             Update successful!
-//           </p>
-//           <p>
-//             {values.userName}
-//           </p>
-//           <p>
-//             {values.phone}
-//           </p>
-//         </div>
-//       )}
-//     </>
-//   );
 };
 export default UserProfile;
