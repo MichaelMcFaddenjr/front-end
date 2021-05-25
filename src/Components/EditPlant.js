@@ -13,17 +13,8 @@ const EditPlant = (props) => {
   const { plant_id } = useParams();
   const user_id = localStorage.getItem('user_id')
 
+  const [ plant, setPlant ] = useState({});
 
-  const [ plant, setPlant ] = useState({
-    nickname:"",
-    species:"",
-    h2o_frequency: 0,
-    image: null,
-    plant_id: plant_id,
-    plant_owner: "",
-    plant_owner_id: user_id,
-  });
-  
   useEffect(()=>{
     axiosWithAuth()
     .get(`/plants/${plant_id}`)
@@ -47,11 +38,12 @@ const EditPlant = (props) => {
     axiosWithAuth()
       .put(`/plants/${user_id}/${plant_id}`, plant)
       .then(res=>{
-        setPlant(res.data);
+        // setPlant(res.data);
         push(`plants/${plant_id}`);
+        console.log("handleSubmit:", res);
       })
       .catch(err=>{
-        console.log(err);
+        console.log(err.Response.message);
       })
   }
 
@@ -90,7 +82,7 @@ const EditPlant = (props) => {
           <input
             value={image}
             name="image"
-            type="text"
+            type="null"
             onChange={handleChange}
           />
         </label>
