@@ -26,7 +26,7 @@ const MyPlants = () => {
             .catch( err => console.error( "darn... nothing: ", err) );
         // data();
         }, 
-    [] );
+    [myPlants] );
 
     const onClickAdd = (e) =>{
         setAdd(!add);
