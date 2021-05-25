@@ -11,7 +11,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 const EditPlant = (props) => {
   const { push } = useHistory();
   const { plant_id } = useParams();
-  const user_id = localStorage.getItem('user_id')
+  // const user_id = localStorage.getItem('user_id')
 
   const [ plant, setPlant ] = useState({});
 
@@ -36,14 +36,13 @@ const EditPlant = (props) => {
   const handleSubmit = (e) =>{
     e.preventDefault();
     axiosWithAuth()
-      .put(`/plants/${user_id}/${plant_id}`, plant)
+      .put(`/plants/${plant_id}`, plant)
       .then(res=>{
         // setPlant(res.data);
-        push(`plants/${plant_id}`);
-        console.log("handleSubmit:", res);
+        push(`/myplants`);
       })
       .catch(err=>{
-        console.log(err.Response.message);
+        console.log(err);
       })
   }
 
@@ -82,7 +81,7 @@ const EditPlant = (props) => {
           <input
             value={image}
             name="image"
-            type="null"
+            type="text"
             onChange={handleChange}
           />
         </label>

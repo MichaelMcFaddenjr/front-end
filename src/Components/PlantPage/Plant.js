@@ -7,8 +7,6 @@ import { useHistory } from 'react-router-dom'
 
 const Plant = ({ key, plant, setMyPlants, myPlants}) => {
   const { push } = useHistory();
-  console.log("myPlants state:", myPlants);
-  console.log("plant state:", plant);
   const onClick = () =>{
     push(`/editplant/${plant.plant_id}`)
   }
