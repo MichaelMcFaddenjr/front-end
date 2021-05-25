@@ -6,7 +6,6 @@ import NavBar from './Components/NavBar';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
 import MyPlants from './Components/PlantPage/MyPlants';
-import AddPlant from './Components/AddPlant';
 import EditPlant from './Components/EditPlant';
 import UserProfile from './Components/UserProfile';
 
@@ -14,11 +13,24 @@ import './App.css';
 
 function App() {
 
+  const [ loggedIn, setLoggedIn ] = useState(false);
+
+  const token = localStorage.getItem("token")
+
+  const isLoggedIn = () => {
+    if (token === localStorage.getItem("token") ) {
+      setLoggedIn(true)
+    } else {
+      setLoggedIn(false)
+    }
+    return (isLoggedIn)
+  }
+
 
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar isLoggedIn={loggedIn}/>
       <h1>Water My Plants</h1>
       <Switch>
         <Route exact path='/'>
