@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../NavBar.js';
 import { axiosWithAuth } from '../../utils/axiosWithAuth.js';
 import Plant from './Plant'
 import AddPlant from '../AddPlant.js';

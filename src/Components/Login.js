@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 //Unit 3 student can handle this because we will use axiosWithAuth
 
 const Login = (props) => {
+
+  const token = localStorage.getItem("token")
 
   const [ login, setLogin ] = useState ({
     username: "",
@@ -15,6 +17,10 @@ const Login = (props) => {
   const [ error, setError ] = useState ("");
 
   let history = useHistory();
+
+  useEffect(()=>{
+    token && history.push('/myplants')
+  }, [])
 
   const handleChange = (e) => {
     setLogin({
