@@ -28,7 +28,9 @@ const Login = (props) => {
     axios 
       .post('https://ft-water-my-plants-3.herokuapp.com/api/users/login', login)
       .then(res=>{
+        console.log(res);
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user_id', res.data.user_id)
         history.push('/myplants');
       })
       .catch(err=>{
