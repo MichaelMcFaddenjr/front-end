@@ -31,7 +31,6 @@ function App() {
   return (
     <div className="App">
       <NavBar isLoggedIn={loggedIn}/>
-      <h1>Water My Plants</h1>
       <Switch>
         <Route exact path='/'>
           <Login />
