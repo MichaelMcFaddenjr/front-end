@@ -13,10 +13,10 @@ See the plant data (including plant owner) at a :plant_id
 
 Post a plant to a user's data using the user's user_id
 
-### [PUT] /api/plants/:user_id/:plant_id
-***RESTRICTED ENDPOINT***
+### [PUT] /api/plants/:plant_id
+***RESTRICTED ENDPOINT*** 
 
-Edit a plant's information using the user id and the plant id
+Edit a plant's information using the plant id
 
 ### [DELETE] /api/plants/:user_id/:plant_id
 ***RESTRICTED ENDPOINT***
@@ -163,10 +163,10 @@ Post a plant to a user's data using the user's user_id
 
 </details>
 
-##### [PUT] /api/plants/:user_id/:plant_id
+##### [PUT] /api/plants/:plant_id
 ***RESTRICTED ENDPOINT***
 
-Edit a plant's information using the user id and the plant id
+Edit a plant's information using the plant id
 
 > *** Required information ***
 > nickname
