@@ -33,7 +33,7 @@ const AddPlant = ({ setAdd, myPlants, setMyPlants, user_id }) => {
       setAdd(false)
     })
     .catch(err=>{
-      console.log(err.Response);
+      console.log(err);
     })
   }
 
