@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 import schema from '../Validation/signUpFormSchema';
-import { useStore } from 'react-redux';
 import { useHistory } from 'react-router';
+import StyledForm from '../StyledForm';
 
 //this is a simple form unit 2 can build  
 //only need a username, phone number and password  
@@ -73,35 +73,38 @@ const SignUp = () => {
   }, [user])
 
   return (
-    <div>
-      <h1>Plant Card</h1>
-      <form id='sign-up-form' onSubmit={handleSubmit}>
-        <input 
-          type='text'
-          name='username'
-          placeholder='Enter username'
-          value={user.username}
-          onChange={handleChange}
-        />
-        <input
-          type='password'
-          name='password'
-          placeholder='Enter new password'
-          value={user.password}
-          onChange={handleChange}
-        />
-        <input
-          type='text'
-          name='phone_number'
-          placeholder='Enter phone number'
-          value={user.phone_number}
-          onChange={handleChange}
-        />
+    <div id='form-container'>
+      <h1>Sign Up!</h1>
+      <StyledForm id='sign-up-form' onSubmit={handleSubmit}>
+        <label>Username<span> *</span>
+          <input 
+            type='text'
+            name='username'
+            value={user.username}
+            onChange={handleChange}
+          />
+        </label>
+        {signUpFormErrors.username && <div className='form-errors'>{signUpFormErrors.username}</div>}
+        <label>Password<span> *</span>
+          <input
+            type='password'
+            name='password'
+            value={user.password}
+            onChange={handleChange}
+          />
+        </label>
+        {signUpFormErrors.password && <div className='form-errors'>{signUpFormErrors.password}</div>}
+        <label>Phone Number<span> *</span>
+          <input
+            type='text'
+            name='phone_number'
+            value={user.phone_number}
+            onChange={handleChange}
+          />
+        </label>
+        {signUpFormErrors.phone_number && <div className='form-errors'>{signUpFormErrors.phone_number}</div>}
         <button id='sign-up-button' disabled={disabled}>Sign Up</button>
-        <div className='form-errors'>{signUpFormErrors.username}</div>
-        <div className='form-errors'>{signUpFormErrors.password}</div>
-        <div className='form-errors'>{signUpFormErrors.phone_number}</div>
-      </form>
+      </StyledForm>
     </div>
   );
 }
