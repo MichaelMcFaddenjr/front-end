@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import StyledForm from '../StyledForm'
 
 //This is our add a plant form 
 //Unit 2 students can build out most of this component 
@@ -45,39 +46,43 @@ const AddPlant = ({ setAdd, myPlants, setMyPlants, user_id }) => {
 
   return (
     <div>
-      <h1>Add A Plant</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Nickname:</label>
-        <input
-          name="nickname"
-          type="text"          
-          value={nickname}
-          onChange={handleChange}
-        />
-        <label>Species:</label>
-        <input
-          name="species"
-          type="text"
-          value={species}
-          onChange={handleChange}
-        />
-        <label>Water Frequency (in days):</label>
-        <input
-          name="h2o_frequency"
-          type="number"
-          value={h2o_frequency}
-          onChange={handleChange}
-        />
-        <label>Image (URL):</label>
-        <input
-          name="image"
-          type="text"
-          value={image}
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit}>Add Plant</button>
-        <button onClick={handleCancel}>Cancel</button>
-      </form>
+      <StyledForm onSubmit={handleSubmit}>
+        <h1>Add plant</h1>
+        <label>Nickname:
+          <input
+            name="nickname"
+            type="text"          
+            value={nickname}
+            onChange={handleChange}
+          />
+        </label>
+        <label>Species:
+          <input
+            name="species"
+            type="text"
+            value={species}
+            onChange={handleChange}
+          />
+        </label>
+        <label>Water Frequency (in days):
+          <input
+            name="h2o_frequency"
+            type="number"
+            value={h2o_frequency}
+            onChange={handleChange}
+          />
+        </label>
+        <label>Image (URL):
+          <input
+            name="image"
+            type="text"
+            value={image}
+            onChange={handleChange}
+          />
+        </label>
+        <button id='add-button' onClick={handleSubmit}>Add Plant</button>
+        <button id='cancel-button' onClick={handleCancel}>Cancel</button>
+      </StyledForm>
     </div>
   );
 }

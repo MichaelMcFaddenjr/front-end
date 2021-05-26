@@ -10,8 +10,11 @@ const StyledForm = styled.form`
     color: #064420;
     border-top: 5px solid #064420;
     border-radius: 5px;
-    width: 40%;
-    margin: 0 auto;
+    margin: -2%;
+
+    h1 {
+        font-size: 1.5rem;
+    }
 
     label:first-child {
         margin-top: 10%;
@@ -45,10 +48,22 @@ const StyledForm = styled.form`
         font-weight: bold;
         border: none;
         font-size: .8rem;
+        width: 50%; 
+        border-radius: 5px;
 
         &:hover {
-            cursor: hand;
+            cursor: pointer;
+            opacity: 0.5;
         }
+    }
+
+    #add-button {
+        background-color: #e4efe7;
+        margin-bottom: 0;
+    }
+
+    #cancel-button {
+        background-color: #ffb4b4;
     }
 
     .form-errors {
