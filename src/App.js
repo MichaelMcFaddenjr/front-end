@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -13,24 +13,24 @@ import './App.css';
 
 function App() {
 
-  const [ loggedIn, setLoggedIn ] = useState(false);
+  // const [ loggedIn, setLoggedIn ] = useState(false);
 
-  const token = localStorage.getItem("token")
+  // const token = localStorage.getItem("token")
 
-  const isLoggedIn = () => {
-    if (token === localStorage.getItem("token") ) {
-      setLoggedIn(true)
-    } else {
-      setLoggedIn(false)
-    }
-    return (isLoggedIn)
-  }
+  // const isLoggedIn = () => {
+  //   if (token === localStorage.getItem("token") ) {
+  //     setLoggedIn(true)
+  //   } else {
+  //     setLoggedIn(false)
+  //   }
+  //   return (isLoggedIn)
+  // }
 
 
 
   return (
     <div className="App">
-      <NavBar isLoggedIn={loggedIn}/>
+      <NavBar />
       <Switch>
         <Route exact path='/'>
           <Login />

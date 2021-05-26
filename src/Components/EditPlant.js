@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import StyledForm from '../StyledForm';
 
@@ -8,10 +8,7 @@ import StyledForm from '../StyledForm';
 //Make sure we are matching backend keys  
 
 const EditPlant = ({ close, plant_id }) => {
-  const { push } = useHistory();
-  // const { plant_id } = useParams();
-  // const user_id = localStorage.getItem('user_id')
-  // console.log(plant_id);
+
 
   const [ plant, setPlant ] = useState({});
 
