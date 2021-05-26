@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { useHistory } from 'react-router-dom'
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Page = styled.section`
@@ -36,12 +36,11 @@ const Button = styled.button`
   }
 `
 
-//This is our navBar
-//on the NavBar there should be links with ability to see 'MyPlants', 'My Profile' and 'Logout'
-
 const NavBar = () => {
 
   const token = localStorage.getItem('token')
+
+  const location = useLocation()  // I know this is not being used - NO TOUCHY! You touchy = navbar angry
   
   const { push } = useHistory();
 
@@ -56,19 +55,21 @@ const NavBar = () => {
   const onClickProfile = (e) =>{
     push('/myprofile')
   }
+
   return (
     <Page>
       <Title>Water My Plants</Title>
-      <Buttons>
-        
-        <Button onClick={onClickPlants}>My Plants</Button>
-        <Button onClick={onClickProfile}>My Profile</Button>
-        {token ? 
-        (<Button onClick={logout}>Logout</Button>)
-        :
-        (null)
-        }
-      </Buttons>
+      
+      {token
+      && 
+        (
+        <Buttons>        
+          <Button onClick={onClickPlants}>My Plants</Button>
+          <Button onClick={onClickProfile}>My Profile</Button>
+          <Button onClick={logout}>Logout</Button>
+        </Buttons>
+        )
+      }
 
     </Page>
   );
