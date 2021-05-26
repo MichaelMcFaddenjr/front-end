@@ -46,7 +46,7 @@ const Plant = ({ key, plant, setMyPlants, myPlants, user_id}) => {
             center
             classNames={{modal: 'customModal'}}
           >
-            <EditPlant close={onCloseModal} />
+            <EditPlant close={onCloseModal} plant_id={plant.plant_id}/>
           </Modal>)
         : null}
 

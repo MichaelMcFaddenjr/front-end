@@ -7,10 +7,11 @@ import StyledForm from '../StyledForm';
 //When this form appears, the currently stored info should render and a post call needs to be made on submission
 //Make sure we are matching backend keys  
 
-const EditPlant = ({ close }) => {
+const EditPlant = ({ close, plant_id }) => {
   const { push } = useHistory();
-  const { plant_id } = useParams();
+  // const { plant_id } = useParams();
   // const user_id = localStorage.getItem('user_id')
+  // console.log(plant_id);
 
   const [ plant, setPlant ] = useState({});
 
