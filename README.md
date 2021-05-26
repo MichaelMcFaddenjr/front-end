@@ -14,7 +14,7 @@ See the plant data (including plant owner) at a :plant_id
 Post a plant to a user's data using the user's user_id
 
 ### [PUT] /api/plants/:plant_id
-***RESTRICTED ENDPOINT*** 
+***RESTRICTED ENDPOINT***
 
 Edit a plant's information using the plant id
 
@@ -42,7 +42,8 @@ Logs in a user, receives a token for authorization
 ### [PUT] /api/users/:user_id
 ***RESTRICTED ENDPOINT***
 
-Edit the user's information
+Edit the user's phone_number and password only
+Need to send back username, phone_number, and password
 
 ## Plants
 ##### [GET] /api/plants
@@ -118,8 +119,6 @@ See the full array of plants
 See the plant data (including plant owner) at a :plant_id
 <details>
 
-/api/plants/1
-
 ```JSON
 {
     "plant_id": 1,
@@ -149,8 +148,6 @@ Post a plant to a user's data using the user's user_id
 
 <details>
 
-/api/plants/user/2
-
 ```JSON
 {
     "plant_id": 9,
@@ -178,8 +175,6 @@ Edit a plant's information using the plant id
 
 <details>
 
-/api/plants/user/2/9
-
 ```JSON
 {
     "nickname": "Spikey",
@@ -195,8 +190,6 @@ Edit a plant's information using the plant id
 
 Remove a plant using the user id and the plant id
 <details>
-
-/api/plants/user/2/9
 
 ```JSON
 {
@@ -327,7 +320,8 @@ Logs in a user, receives a token for authorization
 ##### [PUT] /api/users/:user_id
 ***RESTRICTED ENDPOINT***
 
-Edit the user's information
+Edit the user's phone_number and password only
+Need to send back username, phone_number, and password
 
 > *** Required information ***
 > username
