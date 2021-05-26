@@ -29,7 +29,7 @@ const MyPlants = () => {
             .catch( err => console.error( "darn... nothing: ", err) );
         // data();
         }, 
-    [myPlants] );
+    [myPlants]);
 
     const onClickAdd = (e) =>{
         setAdd(!add);
@@ -50,8 +50,10 @@ const MyPlants = () => {
                 open={open} 
                 onClose={onCloseModal} 
                 center 
-                classNames={{modal: 'customModal'}}
-                // closeIcon={null}
+                classNames={{
+                    modal: 'customModal',
+                    overlay: 'customOverlay',
+                }}
             >
                 <AddPlant 
                     setAdd={setAdd} 

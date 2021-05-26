@@ -10,7 +10,7 @@ const StyledForm = styled.form`
     color: #064420;
     border-top: 5px solid #064420;
     border-radius: 5px;
-    margin: -2%;
+    margin: -3%;
 
     h1 {
         font-size: 1.5rem;

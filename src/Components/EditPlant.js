@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-
+import StyledForm from '../StyledForm';
 
 //This component will give the user the ability to edit plants they have already created
 //When this form appears, the currently stored info should render and a post call needs to be made on submission
 //Make sure we are matching backend keys  
 
-const EditPlant = (props) => {
+const EditPlant = ({ close }) => {
   const { push } = useHistory();
   const { plant_id } = useParams();
   // const user_id = localStorage.getItem('user_id')
 
   const [ plant, setPlant ] = useState({});
+
+  const history = useHistory();
 
   useEffect(()=>{
     axiosWithAuth()
@@ -38,8 +39,8 @@ const EditPlant = (props) => {
     axiosWithAuth()
       .put(`/plants/${plant_id}`, plant)
       .then(res=>{
-        // setPlant(res.data);
-        push(`/myplants`);
+        history.push('/myplants');
+        close();
       })
       .catch(err=>{
         console.log(err);
@@ -50,10 +51,9 @@ const EditPlant = (props) => {
 
   return (
     <div>
-      <h1>Edit Your Plant</h1>
-      <div>
-        <form onSubmit={handleSubmit}>
-        <label>Nickname
+      <StyledForm onSubmit={handleSubmit}>
+        <h1>Edit plant</h1>
+        <label>Nickname: 
           <input 
             value={nickname}
             name="nickname"
@@ -61,7 +61,7 @@ const EditPlant = (props) => {
             onChange={handleChange}
           />
         </label>
-        <label>Species
+        <label>Species:
           <input
             value={species}
             name= "species"
@@ -69,7 +69,7 @@ const EditPlant = (props) => {
             onChange={handleChange}
           />
         </label>
-        <label>Water Frequency (# of days)
+        <label>Water Frequency (in days):
           <input  
             value={h2o_frequency}
             name="h2o_frequency"
@@ -77,7 +77,7 @@ const EditPlant = (props) => {
             onChange={handleChange}
           />
         </label>
-        <label>Image
+        <label>Image (URL):
           <input
             value={image}
             name="image"
@@ -85,10 +85,9 @@ const EditPlant = (props) => {
             onChange={handleChange}
           />
         </label>
-        <button onClick={handleSubmit}>Save Changes</button>
-        <Link to={'/myplants'}><button>Cancel</button></Link>
-        </form>
-      </div>
+        <button id='add-button' onClick={handleSubmit}>Save Changes</button>
+        <button id='cancel-button' onClick={close}>Cancel</button>
+      </StyledForm>
     </div>
   );
 }

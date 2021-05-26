@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import EditPlant from '../EditPlant'
-import { useHistory } from 'react-router-dom'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { Modal } from 'react-responsive-modal';
+import '../../Modal.css';
 
 //this is where we will build out each plant card with the data we want to display for each plant
 //Each plant card should have a button to edit and delete the selected plant 
 
 const Plant = ({ key, plant, setMyPlants, myPlants, user_id}) => {
-  const { push } = useHistory();
-  const onClick = () =>{
-    push(`/editplant/${plant.plant_id}`)
-  }
 
+  const [edit, setEdit] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const onClickDelete = (plant_id) => {
     axiosWithAuth()
@@ -24,15 +23,37 @@ const Plant = ({ key, plant, setMyPlants, myPlants, user_id}) => {
     })
   }
 
+  const onClickEdit = (e) => {
+    setEdit(!edit);
+    setOpen(true);
+  }
+
+  const onCloseModal = () => {
+    setOpen(false);
+    setEdit(!edit);
+  }
+
   return (
     <div>
-    <h2>{plant.nickname}</h2>
-    <h3>{plant.species}</h3>
-    <h3>Water Frequency: Every {plant.h2o_frequency} days</h3>
-    <div className='btn-ctn'>
-      <button onClick={onClick}>Edit</button>
-      <button onClick={onClickDelete}>Delete</button>
-    </div>
+      <h2>{plant.nickname}</h2>
+      <h3>{plant.species}</h3>
+      <h3>Water Frequency: Every {plant.h2o_frequency} days</h3>
+
+      { edit ? (
+          <Modal
+            open={open}
+            onClose={onCloseModal}
+            center
+            classNames={{modal: 'customModal'}}
+          >
+            <EditPlant close={onCloseModal} />
+          </Modal>)
+        : null}
+
+      <div className='btn-ctn'>
+        <button onClick={onClickEdit}>Edit</button>
+        <button onClick={onClickDelete}>Delete</button>
+      </div>
     </div>
   );
 }
