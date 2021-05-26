@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import schema from '../Validation/signUpFormSchema';
 import { useHistory } from 'react-router';
 import StyledForm from '../StyledForm';
+import '../SignUp.css';
 
 //this is a simple form unit 2 can build  
 //only need a username, phone number and password  
@@ -73,9 +74,9 @@ const SignUp = () => {
   }, [user])
 
   return (
-    <div id='form-container'>
-      <h1>Sign Up!</h1>
+    <div className='form-container'>
       <StyledForm id='sign-up-form' onSubmit={handleSubmit}>
+      <h1>Sign Up!</h1>
         <label>Username<span> *</span>
           <input 
             type='text'
