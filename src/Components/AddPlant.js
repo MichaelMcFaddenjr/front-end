@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import StyledForm from '../StyledForm'
+import StyledForm from '../StyledForm';
+import '../Modal.css';
 
 //This is our add a plant form 
 //Unit 2 students can build out most of this component 
@@ -45,7 +46,6 @@ const AddPlant = ({ setAdd, myPlants, setMyPlants, user_id }) => {
   const { nickname, species, h2o_frequency, image } = addPlant
 
   return (
-    <div>
       <StyledForm onSubmit={handleSubmit}>
         <h1>Add plant</h1>
         <label>Nickname:
@@ -83,7 +83,6 @@ const AddPlant = ({ setAdd, myPlants, setMyPlants, user_id }) => {
         <button id='add-button' onClick={handleSubmit}>Add Plant</button>
         <button id='cancel-button' onClick={handleCancel}>Cancel</button>
       </StyledForm>
-    </div>
   );
 }
 
