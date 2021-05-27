@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body,
+
+html {
+  height: 100%;
+  font-family: "Ubuntu";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
+
+textarea {
+  outline: none;
+  border: none;
+}
+
+textarea:focus,
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
+}
+
+ul,
+li {
+  margin: 0px;
+  list-style-type: none;
+}
+
+button {
+  outline: none !important;
+  border: none;
+  background: transparent;
+}
+
+.edit-btn {
+    margin: 20px 20px;
+    width: 5%;
+    height: 50px;
+    background-color: #064420;
+    border-radius: 25px;
+  
+    font-family: "Ubuntu";
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+.edit-btn:hover {
+    background-color: #00335e;
+    cursor: pointer;
+}
+
+.delete-btn {
+    margin: 20px 20px;
+    width: 5%;
+    height: 50px;
+    background-color: #064420;
+    border-radius: 25px;
+  
+    font-family: "Ubuntu";
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transition: all 0.4s;
+}
+
+.delete-btn:hover {
+    background-color: #00335e;
+    cursor: pointer;
+}
+
+.plant-img {
+    width: 15%;
+    border: 2px solid black;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: "Ubuntu";
+    color:#064420;
+    text-decoration: underline;
+}
+
+h3 {
+    font-family: "Ubuntu";
+    color:#064420;
+}

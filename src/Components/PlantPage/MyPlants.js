@@ -5,6 +5,7 @@ import AddPlant from '../AddPlant.js';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import '../../Modal.css';
+import '../../MyPlants.css';
 
 //this page will render all of the users plant cards. 
 //There should be an add plant button.
@@ -43,7 +44,7 @@ const MyPlants = () => {
 
   return (
     <div>
-        <h1>My Plants</h1>
+        <h1 className="my-plants-title">My Plants</h1>
 
         { add ? (
             <Modal 
@@ -64,7 +65,7 @@ const MyPlants = () => {
             </Modal>)
         : null}
 
-        { add ? null : (<button onClick={onClickAdd}>Add Plant</button>) }
+        { add ? null : (<button className='add-plant-btn' onClick={onClickAdd}>Add Plant</button>) }
 
         {myPlants.map(plant=>
             <Plant plant={plant} setMyPlants={setMyPlants} myPlants={myPlants}/>)}

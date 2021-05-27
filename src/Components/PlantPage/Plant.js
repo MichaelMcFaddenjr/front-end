@@ -3,6 +3,7 @@ import EditPlant from '../EditPlant'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { Modal } from 'react-responsive-modal';
 import '../../Modal.css';
+import '../../Plants.css';
 
 //this is where we will build out each plant card with the data we want to display for each plant
 //Each plant card should have a button to edit and delete the selected plant 
@@ -36,6 +37,7 @@ const Plant = ({ key, plant, setMyPlants, myPlants, user_id}) => {
   return (
     <div>
       <h2>{plant.nickname}</h2>
+      <img className="plant-img" src='https://bit.ly/3wzyJYX' alt = "What?!? URL isn't working?!"/>
       <h3>{plant.species}</h3>
       <h3>Water Frequency: Every {plant.h2o_frequency} days</h3>
 
@@ -51,8 +53,8 @@ const Plant = ({ key, plant, setMyPlants, myPlants, user_id}) => {
         : null}
 
       <div className='btn-ctn'>
-        <button onClick={onClickEdit}>Edit</button>
-        <button onClick={onClickDelete}>Delete</button>
+        <button className='edit-btn' onClick={onClickEdit}>Edit</button>
+        <button className='delete-btn' onClick={onClickDelete}>Delete</button>
       </div>
     </div>
   );
