@@ -34,7 +34,7 @@ const Plant = ({ key, plant, setMyPlants, myPlants, user_id}) => {
   return (
     <div>
       <h2>{plant.nickname}</h2>
-      <img className="plant-img" src='https://bit.ly/3wzyJYX' alt = "What?!? URL isn't working?!"/>
+      <img className="plant-img" src={plant.image} alt = {plant.nickname}/>
       <h3>{plant.species}</h3>
       <h3>Water Frequency: Every {plant.h2o_frequency} days</h3>
 
