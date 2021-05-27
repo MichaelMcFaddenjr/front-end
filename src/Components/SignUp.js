@@ -6,10 +6,6 @@ import { useHistory } from 'react-router';
 import StyledForm from '../StyledForm';
 import '../SignUp.css';
 
-//this is a simple form unit 2 can build  
-//only need a username, phone number and password  
-//add validation  
-
 const initialUserValues = {
   username: '',
   password: '',
@@ -38,7 +34,6 @@ const SignUp = () => {
     })
     .catch(err => {
       console.log('Error: ', err);
-      // return "There was an error..."
     })
   }
 

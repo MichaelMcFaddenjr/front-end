@@ -4,10 +4,6 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import StyledForm from '../StyledForm';
 import '../Modal.css';
 
-//This is our add a plant form 
-//Unit 2 students can build out most of this component 
-//be sure to look at the backend keys and make sure yours match
-
 const AddPlant = ({ setAdd, myPlants, setMyPlants, user_id }) => {
   const { push } = useHistory();
 

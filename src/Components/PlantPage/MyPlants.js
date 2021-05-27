@@ -7,9 +7,6 @@ import { Modal } from 'react-responsive-modal';
 import '../../Modal.css';
 import '../../MyPlants.css';
 
-//this page will render all of the users plant cards. 
-//There should be an add plant button.
-
 const MyPlants = () => {
   
     const [myPlants, setMyPlants] = useState([]);
@@ -20,15 +17,12 @@ const MyPlants = () => {
 
 
     useEffect( () => {
-      // needed to set a function that handled the axios.get for it to render a .map of the array
-        // const data = () => {
         axiosWithAuth()
             .get(`/users/${user_id}/plants`)
             .then( res => {
                 setMyPlants( res.data );
             })
             .catch( err => console.error( "darn... nothing: ", err) );
-        // data();
         }, 
     [myPlants]);
 

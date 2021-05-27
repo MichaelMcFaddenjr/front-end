@@ -3,9 +3,6 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import '../Login.css';
 
-//this component is for login in  
-//Unit 3 student can handle this because we will use axiosWithAuth
-
 const Login = (props) => {
 
   const token = localStorage.getItem("token")
