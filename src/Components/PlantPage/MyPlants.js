@@ -71,6 +71,7 @@ const MyPlants = () => {
             <Plant plant={plant} setMyPlants={setMyPlants} myPlants={myPlants}/>)}
 
     </div>
+
 );
 };
 
