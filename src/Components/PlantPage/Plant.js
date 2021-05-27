@@ -5,9 +5,6 @@ import { Modal } from 'react-responsive-modal';
 import '../../Modal.css';
 import '../../Plants.css';
 
-//this is where we will build out each plant card with the data we want to display for each plant
-//Each plant card should have a button to edit and delete the selected plant 
-
 const Plant = ({ key, plant, setMyPlants, myPlants, user_id}) => {
 
   const [edit, setEdit] = useState(false);

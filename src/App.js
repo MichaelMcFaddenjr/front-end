@@ -13,21 +13,6 @@ import './App.css';
 
 function App() {
 
-  // const [ loggedIn, setLoggedIn ] = useState(false);
-
-  // const token = localStorage.getItem("token")
-
-  // const isLoggedIn = () => {
-  //   if (token === localStorage.getItem("token") ) {
-  //     setLoggedIn(true)
-  //   } else {
-  //     setLoggedIn(false)
-  //   }
-  //   return (isLoggedIn)
-  // }
-
-
-
   return (
     <div className="App">
       <NavBar />
