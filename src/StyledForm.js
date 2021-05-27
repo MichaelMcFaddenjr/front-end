@@ -1,4 +1,4 @@
-import React from 'react';
+
 import styled from 'styled-components';
 
 const StyledForm = styled.form`
@@ -10,7 +10,7 @@ const StyledForm = styled.form`
     color: #064420;
     border-top: 5px solid #064420;
     border-radius: 5px;
-    margin: -3%;
+    /* margin: -3%; */
 
     h1 {
         font-size: 1.5rem;
